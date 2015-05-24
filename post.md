@@ -1,4 +1,4 @@
-At [We Are Living](http://weareliving.co.uk/#/), we spent quite a bit of time playing with iBeacons, HTML geolocation and new mapping technologies. After discovering a generous selection of tools for working with location based data, we decided to build [Leeds Living](http://leedsliving.co.uk/), a digital city guide with a focus on location and real-time data. So to demonstrate how we achieved some of the core functionality within Leeds Living, we will share a taster of the process behind the product.
+At [We Are Living](http://weareliving.co.uk/#/), we spent quite a bit of time playing with iBeacons, HTML geolocation and new mapping technologies. After discovering a generous selection of tools for working with location based data, we decided to build [Leeds Living](http://leedsliving.co.uk/), a digital city guide with a focus on location and real-time data. So to demonstrate how we achieved some of the core functionality within Leeds Living, we will share a taster of the process behind the product. This article assumes you already have some knowledge of all technologies mentioned.
 
 ## Choosing a CMS
 By the end of 2015, we’re hoping to unveil a new app - essentially Leeds Living on steroids. [The Living App](http://thelivingapp.com/#/) will be a groundbreaking lifestyle app integrated with thousands of iBeacons installed across Leeds city centre, providing real-time anonymous marketing data to businesses and pushing offers and useful information to users when they are out and about in the city. So we needed a CMS that would not only deliver content to the Leeds Living site, but also future-proof us for when we need to access the same data from the app. We chose [Contentful](https://www.contentful.com/) for this very reason. The guys that built it in Berlin call it an “API-first content management system for multi-device online publishing”.
@@ -14,7 +14,7 @@ var contentful = require("contentful").createClient({
   space: "xxxxxxxx"
 });
 
-app.get(“/api/place/:slug", function(req, res){ 
+app.get("/api/place/:slug", function(req, res){ 
  contentful.entries({ 
     "content_type": contentType.place,
     "fields.slug[in]": req.params.slug,
@@ -56,8 +56,8 @@ $http.get("/api/place/" + $routeParams.slug).then(function(res){
 
 var buildMap = function(){
 
-  L.mapbox.accessToken = “xxxxxxxx”;
-  var map = L.mapbox.map("map", “xxxxxxxx” {
+  L.mapbox.accessToken = "xxxxxxxx";
+  var map = L.mapbox.map("map", "xxxxxxxx" {
     minZoom: 11,
     zoomControl: false,
     attributionControl: false
@@ -91,7 +91,7 @@ if (navigator.geolocation) {
 Then we add our HTML button to the map.
 
 ```javascript,linenums=true
-<a href=“” ng-click=“”showMe()”></a>
+<a href="" ng-click="showMe()"></a>
 ```
 And simply add another feature layer to the map when the button is clicked, showing a marker where the user is.
 
@@ -103,7 +103,7 @@ $scope.showMe = function(){
       type: "Point",
       coordinates: [$rootScope.geolocation.coords.longitude, $rootScope.geolocation.coords.latitude]
     },
-    properties: { "title": "You are here” }
+    properties: { "title": "You are here" }
   });
 });
 ```
@@ -137,9 +137,9 @@ var nearbyPlaces = function(){
 Then to request the search through our NodeJS server:
 
 ```javascript,linenums=true
-app(“/api/place/nearby", function(req, res){
+app("/api/place/nearby", function(req, res){
   contentful.entries({
-    "content_type": “xxxxxxxx”,
+    "content_type": "xxxxxxxx",
     "fields.location[near]": req.body.lat + "," + req.body.lon,
     "limit": 8
   }, function(err, entries){
@@ -150,7 +150,7 @@ app(“/api/place/nearby", function(req, res){
 Once again the results can be easily rendered in a browser using Angular. For groups of data like this, we often opted to use [ngRepeat](https://docs.angularjs.org/api/ng/directive/ngRepeat).
 
 ```javascript,linenums=true
-<a ng-repeat=“nearbyPlace in nearbyPlaces” ng-href=“/places/{{nearbyPlace.fields.slug}}”>
+<a ng-repeat="nearbyPlace in nearbyPlaces" ng-href="/places/{{nearbyPlace.fields.slug}}">
   <span>{{nearbyPlace.fields.name}}</span>
   <span>{{nearbyPlace.fields.description}}</span>
 </a>
