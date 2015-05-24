@@ -78,7 +78,7 @@ var buildMap = function(){
 }
 ```
 
-We took this one step further and added a button to our map, which would allow the user to see their current location in relation to the place (if they’re in the city area). This is where [HTML geolocation](http://diveintohtml5.info/geolocation.html) comes in handy. Firstly, we ask the user to share their location when they visit the site.
+We took this one step further and added a button to our map, which would allow the user to see their current location in relation to the place (if they’re in the city area). This is where [HTML geolocation](http://diveintohtml5.info/geolocation.html) came in handy. Firstly, we ask the user to share their location when they visit the site.
 
 ```javascript,linenums=true
 if (navigator.geolocation) {
@@ -112,7 +112,7 @@ Of course there’s a bit more to it than that. We actually handled all map rela
 
 ## Location Based Suggestions
 
-During our R&D phase, we stumbled across a variety of city guide websites, all doing similar things. If you visit one of these sites looking for the best local burger place, you’ll most likely also find a ‘suggested places’ box filled with alternative burger places or relatively useless ‘author’s picks’. We thought we could do better. What if we suggested other nearby places? The user would look up the burger place and also get suggestions for shops and bars within a short walk. Now we’re talking! You can now easily plan your whole afternoon or evening in the city.
+During our R&D phase, we stumbled across a variety of city guide websites, all doing similar things. If you visit one of these sites looking for the best local burger place, you’ll most likely also find a ‘suggested places’ box filled with alternative burger places or relatively useless ‘author’s picks’. We thought we could do better. What if we suggested other nearby places? The user would look up the burger place and also get suggestions for shops and bars within a short walk. Now we’re talking! You could easily plan your whole afternoon or evening in the city.
 
 This is where [search parameters](https://www.contentful.com/developers/documentation/content-delivery-api/javascript/#search) of the Contentful API had their time to shine. The clever boys and girls at Contentful built location based search into their content delivery API, with options to find ‘entries near me’, ‘search within bounding rectangle’ or ‘search within bounding circle’.
 
